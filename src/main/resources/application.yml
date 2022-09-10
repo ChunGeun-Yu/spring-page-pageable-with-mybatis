@@ -1,0 +1,27 @@
+spring:
+  # h2 DB 는 개발용도로만 사용하고 운영에서는 mysql, oracle 과 같은걸 이용해야 합니다.
+  h2:
+    console:
+      enabled: true  # H2 웹 콘솔을 사용하겠다는 의미
+      path: /h2-console  # 콘솔의 경로, 브라우저로 접속시 url path에 이용됨. 다른걸 적어도됨.
+
+  datasource:
+    hikari:
+      driver-class-name: org.h2.Driver  #h2 드라이버 설정
+#      jdbc-url: jdbc:h2:file:~/testdb    # 파일모드, user home 디렉토리에 testdb.mv.db 라는 파일이 생성되고 여기에 저장됨.
+      jdbc-url: jdbc:h2:mem:testdb      # 메모리 모드, spring boot 재시작시 데이터가 사라짐.
+      username: sa  # 사용자 이름 (로그인 시 사용)
+      password:   # 사용자 암호 (로그인 시 사용)
+  sql:
+    init:
+      schema-locations:
+        - classpath:schema.sql
+      data-locations:
+        - classpath:data.sql
+mybatis:
+  mapper-locations: mappers/**/*.xml
+
+logging:
+  level:
+    org.springframework.jdbc: debug
+    log.test.springtest.TestMapper: debug

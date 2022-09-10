@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="log.test.springtest.TestMapper">
+
+
+    <select id="selectData" parameterType="hashmap" resultType="hashmap">
+        SELECT MEMBER_ID as id,
+            NAME as name,
+            AGE as age
+        FROM MEMBER
+        ORDER BY age
+        LIMIT #{offset}, #{size}
+
+    </select>
+
+    <select id="selectAllCount" resultType="long">
+        SELECT COUNT(MEMBER_ID)
+        FROM MEMBER
+    </select>
+
+</mapper>
